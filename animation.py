@@ -57,15 +57,16 @@ class GRUBBootIntro(Scene):
         ######################################
 
         # Fade in from black
-        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=.5)
+        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=.75)
+        self.wait(.25)
 
         # Move to "Windows 10"
         self.play(Transform(highlight, make_highlight(1)))
-        self.wait(.1)
+        self.wait(.075)
 
         # Move to "EchoDRJ Channel"
         self.play(Transform(highlight, make_highlight(2)))
-        self.wait(.5)
+        self.wait(.075)
 
         ######################################
         ############## SCENCE 2 ##############
