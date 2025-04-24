@@ -9,7 +9,7 @@ class GRUBBootIntro(Scene):
         # GRUB-style menu options
         options = [
             "  Arch Linux",
-            "  Windows 11",
+            "  Windows 10",
             "  EchoDRJ Channel",
             "  System setup"
         ]
@@ -57,15 +57,14 @@ class GRUBBootIntro(Scene):
         ######################################
 
         # Fade in from black
-        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=2)
+        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=1)
 
         # Move to "Windows 11"
         self.play(Transform(highlight, make_highlight(1)))
-        self.wait(.75)
+        self.wait(.25)
 
         # Move to "EchoDRJ Channel"
         self.play(Transform(highlight, make_highlight(2)))
-
         self.wait(2)
 
         ######################################
