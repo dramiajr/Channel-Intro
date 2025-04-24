@@ -57,18 +57,50 @@ class GRUBBootIntro(Scene):
         ######################################
 
         # Fade in from black
-        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=1)
+        self.play(FadeIn(full_menu), FadeIn(highlight), run_time=.5)
 
-        # Move to "Windows 11"
+        # Move to "Windows 10"
         self.play(Transform(highlight, make_highlight(1)))
-        self.wait(.25)
+        self.wait(.1)
 
         # Move to "EchoDRJ Channel"
         self.play(Transform(highlight, make_highlight(2)))
-        self.wait(2)
+        self.wait(.5)
 
         ######################################
         ############## SCENCE 2 ##############
         ######################################
 
-        # Add a loading sequence
+        # Fade out the menu and highlight
+        self.play(FadeOut(full_menu), FadeOut(highlight), run_time=.5)
+
+        # Simulate boot sequence
+        loading = [
+            "Booting EchoDRJ Channel...",
+            "Initializing video...",
+            "Loading YouTube interface...",
+            "Mounting new video upload...",
+            "Launching EchoDRJ Channel...",
+            "Don't forget to Like and Subscribe..."
+        ]
+
+        # Add Matrix_Green
+        MATRIX_GREEN = "#00FF41"
+
+        # Create Loading Sequence 
+        boot_texts = VGroup()
+        for i, line in enumerate(loading):
+            left_bracket = Text("[", font="Cascadia Code", color=WHITE).scale(0.5)
+            ok = Text("OK", font="Cascadia Code", color=MATRIX_GREEN).scale(0.5)
+            right_bracket = Text("]", font="Cascadia Code", color=WHITE).scale(0.5)
+            txt = Text(f" {line}", font="Cascadia Code", color=WHITE).scale(0.5).to_edge(UL)
+            full_line = VGroup(left_bracket, ok, right_bracket, txt).arrange(RIGHT)
+            full_line.to_edge(UL).shift(DOWN * i * 0.6)
+            boot_texts.add(full_line) 
+
+        # Animate loading sequence
+        for boot_line in boot_texts:
+            self.play(Write(boot_line), run_time=0.25)
+            self.wait(0.1)
+
+        self.wait(1)
